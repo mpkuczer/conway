@@ -12,7 +12,7 @@ import '../stylesheets/Game.css'
 
 export default function Game() {
   const BOARD_SIZE = 75;
-  const INITIAL_INTERVAL = 250;
+  const INITIAL_INTERVAL = 100;
   const INITIAL_PATTERN = PATTERNS['gosper_glider_gun'];
 
   const [state, setState, setNextState, setStateFromCells] = usePattern(INITIAL_PATTERN, BOARD_SIZE)
