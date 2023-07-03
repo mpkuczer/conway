@@ -25,7 +25,7 @@ export default function Controls({
         value={1000/turnInterval}
         onChange={(t) => setTurnInterval(1000/t)}
         min={1}
-        max={20}
+        max={50}
         />
       </div>
       <div className="controls__turns">Turns: {turns}</div>
