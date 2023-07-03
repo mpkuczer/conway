@@ -7,6 +7,7 @@
   border: 3px solid #233825;
   box-sizing: border-box;
   background-color: hsl(126, 23%, 80%);
+  padding: 0.5px;
 }
 
 .board .row {

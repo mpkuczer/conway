@@ -8,27 +8,17 @@
 
 .cell:hover {
   cursor: pointer;
+  background-color: #a2bea5;
 }
 
 .cell.alive {
-  background-color: #233825
+  background-color: #233825;
+}
+.cell.alive:hover {
+  background-color: #486d4d;
 }
 
 @media screen and (max-width: 1000px) {
-  .cell {
-    height: 13px;
-    width: 13px;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .cell {
-    height: 10px;
-    width: 10px;
-  }
-}
-
-@media screen and (max-width: 650px) {
   .cell {
     height: 8px;
     width: 8px;

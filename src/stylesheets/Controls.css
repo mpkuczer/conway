@@ -9,13 +9,17 @@
 
 .controls button {
   margin: 5px;
+  border-radius:2px;
+  color: #233825;
+  padding: 0.4em 0.8em;
+  width: 90px;
 }
 
 .controls button:hover {
   border-color:#333;
 }
 
-
-.controls button.controls__play {
+.controls .controls__turns {
+  margin-left:10px;
   margin-right: auto;
 }

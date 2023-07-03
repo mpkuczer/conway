@@ -4,63 +4,36 @@ import Board from './Board'
 import Controls from './Controls'
 import Drawer from './Drawer'
 import {
-  ACORN,
-  PULSAR,
-  GLIDER,
-  PENTADECATHLON,
-  LWSS,
-  MWSS,
-  HWSS,
-  R_PENTOMINO,
-  DIEHARD,
-  GOSPER_GLIDER_GUN,
-  centerPattern, 
+  PATTERNS,
+  alignPattern, 
 } from '../patterns/index'
 import '../stylesheets/Game.css'
 
 export default function Game() {
   const BOARD_SIZE = 75;
   const INTERVAL = 50;
-  const INITIAL_PATTERN = GOSPER_GLIDER_GUN;
+  const INITIAL_PATTERN = PATTERNS['gosper_glider_gun'];
 
-  const [state, setState] = useState(
-    Array(BOARD_SIZE).fill(Array(BOARD_SIZE).fill(false)).map((row, i) => {
-      return row.map((cell, j) => {
-        return centerPattern(INITIAL_PATTERN, BOARD_SIZE).reduce((acc, [_i, _j]) => {
-          return acc || (i == _i && j == _j)
-        }, false)
-      })
-    })
-  )
+  const [state, setState] = useState(Array(BOARD_SIZE).fill(Array(BOARD_SIZE).fill(false)))
+  const [turns, setTurns] = useState(0)
+
+  useEffect(() => {
+    setPattern(INITIAL_PATTERN)
+  }, [])
   const [isPlaying, setIsPlaying] = useState(false)
   const [drawerIsOpen, setDrawerIsOpen] = useState(false)
 
+  useEffect(() => {
+    document.addEventListener("mousedown", (e) => {
+      if (
+        !document.querySelector(".drawer").contains(e.target) &&
+        !document.querySelector(".controls__explore").contains(e.target))  {
+        setDrawerIsOpen(false);
+      }
+    });
+  })
+
   useInterval(handleNextButtonClick, isPlaying ? INTERVAL : null)
-
-  // const aliveCellIndices = state.map((row, i) => {
-  //   return row.map((cell, j) => {
-  //     return cell ? [i, j] : []
-  //   })
-  // }).flat();
-
-  // const eligibleCellIndices = aliveCellIndices.reduce((acc, indices) => {
-  //   return [...acc, ...neighborIndices(...indices)]
-  // }, [])
-
-  // function neighborIndices(i, j) {
-  //   return [
-  //     [i-1, j-1],
-  //     [i-1, j],
-  //     [i-1, j+1],
-  //     [i, j-1],
-  //     [i, j+1],
-  //     [i+1, j-1],
-  //     [i+1, j],
-  //     [i+1, j+1]
-  //   ].filter((_i, _j ) => {
-  //     _i >= 0 && _j >= 0 && _i < BOARD_SIZE && _j < BOARD_SIZE
-  //   })
-  // }
 
   function handleCellClick(i, j) {
     setState(
@@ -75,24 +48,8 @@ export default function Game() {
     )
   }
 
-  ///
-
   function handleNextButtonClick() {
-    // eligibleCellIndices.forEach(([i, j]) => {
-    //   setState((state) => {
-    //     state.map((row, _i) => {
-    //       return row.map((cell, j) => {
-    //         if (!state[i][j] && neighbourCount(i, j) === 3) {
-    //           return true
-    //         } else if (state[i][j] && neighbourCount(i, j) < 2 || neighbourCount(i, j) > 3) {
-    //           return false
-    //         } else {
-    //           return cell
-    //         }
-    //       })
-    //     })
-    //   })
-    // })
+    setTurns(turns+1)
     setState(state.map((row, i) => {
         return row.map((cell, j) => {
           if (!state[i][j] && neighbourCount(i, j) === 3) {
@@ -113,6 +70,7 @@ export default function Game() {
 
   function handleClearButtonClick() {
     setIsPlaying(false);
+    setTurns(0);
     setState(state.map((row) => {
       return row.map((cell) => {
         return false
@@ -121,6 +79,7 @@ export default function Game() {
   }
 
   function handleRandomButtonClick() {
+    setTurns(0);
     setIsPlaying(false);
     setState(state.map((row) => {
       return row.map((cell) => {
@@ -131,6 +90,18 @@ export default function Game() {
 
   function handleExploreButtonClick() {
     setDrawerIsOpen(!drawerIsOpen)
+  }
+
+  function setPattern(pattern) {
+    setTurns(0)
+    setIsPlaying(false);
+    setState(state.map((row, i) => {
+      return row.map((cell, j) => {
+        return alignPattern(pattern.data, pattern.defaultAlign, BOARD_SIZE).reduce((acc, [_i, _j]) => {
+          return acc || (i == _i && j == _j)
+        }, false)
+      })
+    }))
   }
 
   function neighbourCount(i, j) {
@@ -156,8 +127,11 @@ export default function Game() {
 
   return (
     <div id="board-with-controls">
-      <Drawer isOpen={drawerIsOpen}/>
+      <Drawer
+        isOpen={drawerIsOpen}
+        setPattern={setPattern}/>
       <Controls
+        turns={turns}
         isPlaying={isPlaying}
         handleNextButtonClick={handleNextButtonClick}
         handlePlayButtonClick={handlePlayButtonClick}
