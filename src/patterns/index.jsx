@@ -99,8 +99,6 @@ export function alignPattern(data, defaultAlign, boardSize) {
   const margin = 3;
   function getOffsets() {
     switch (defaultAlign) {
-      case 'center': 
-        return measurePatternSize(data).map((n) => Math.floor((boardSize - n) / 2))
       case 'top-left':
         return [margin, margin]
       case 'top-center':
