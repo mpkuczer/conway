@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
 import Cell from './Cell'
 import '../stylesheets/Board.css'
 
-export default function Board({ state, Cell}) {
+export default function Board({ state, cell, handleCellClick}) {
   return (
     <div className="board">
       {state.map((row, rowIndex) => {
@@ -15,8 +14,8 @@ export default function Board({ state, Cell}) {
                 <Cell
                   i={rowIndex}
                   j={cellIndex}
-                  alive={cell}
-                  handlCellClick={handleCellClick}
+                  isAlive={cell}
+                  handleCellClick={handleCellClick}
                   key={`${rowIndex}-${cellIndex}`}
                 />
               )

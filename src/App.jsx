@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import './App.css'
 
-import BoardWithControls from './components/BoardWithControls'
+import Game from './components/Game'
 
 export default function App() {
   return (
-    <>
-    <h1>Conway's Game of Life</h1>
-    <BoardWithControls>
-    </BoardWithControls>
-    </>
+    <div className="main">
+      <h1>Game <br/> of <br/> Life</h1>
+      <Game/>
+    </div>
   )
 }

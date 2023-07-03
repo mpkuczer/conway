@@ -1,0 +1,21 @@
+.controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom:8px;
+}
+
+.controls button {
+  margin: 5px;
+}
+
+.controls button:hover {
+  border-color:#333;
+}
+
+
+.controls button.controls__play {
+  margin-right: auto;
+}
