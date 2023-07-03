@@ -11,15 +11,39 @@
   margin: 5px;
   border-radius:2px;
   color: #233825;
-  padding: 0.4em 0.8em;
-  width: 90px;
+  padding: 0.5em 0.4em;
+  width: 75px;
+  background-color: #dfdfdf;
+  color:rgb(54, 65, 40)
+
 }
 
 .controls button:hover {
   border-color:#333;
 }
 
+.controls .controls__play {
+  width:50px
+}
+
 .controls .controls__turns {
-  margin-left:10px;
+  margin: 5px;
   margin-right: auto;
+}
+
+.controls .controls__speed {
+  margin: 20px;
+  width: 100px;
+}
+
+.controls .controls__speed .mantine-Slider-track {
+  width: 100px;
+}
+
+.controls .controls__speed .mantine-Slider-bar {
+  background-color: #628128;
+}
+
+.controls .controls__speed .mantine-Slider-thumb {
+  border-color: #706007;
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { MantineProvider } from '@mantine/core'
 import './App.css'
 
 import Game from './components/Game'

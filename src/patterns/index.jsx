@@ -88,42 +88,8 @@ const GOSPER_GLIDER_GUN = {
   humanName: 'Gosper glider gun',
 }
 
-function measurePatternSize(pattern) {
-  return pattern.reduce((acc, [i, j]) => {
-    return [Math.max(acc[0], i), Math.max(acc[1], j)]
-  }, [0, 0])
-}
 
 
-export function alignPattern(data, defaultAlign, boardSize) {
-  const margin = 3;
-  function getOffsets() {
-    switch (defaultAlign) {
-      case 'top-left':
-        return [margin, margin]
-      case 'top-center':
-        return [margin, Math.floor((boardSize - measurePatternSize(data)[1]) / 2)]
-      case 'top-right':
-        return [margin, boardSize - measurePatternSize(data)[1] - margin]
-      case 'center-left':
-        return [Math.floor((boardSize - measurePatternSize(data)[0]) / 2), margin]
-      case 'center': //
-        return measurePatternSize(data).map((n) => Math.floor((boardSize - n) / 2))
-      case 'center-right':
-        return [Math.floor((boardSize - measurePatternSize(data)[0]) / 2), boardSize - measurePatternSize(data)[1] - margin]
-      case 'bottom-left':
-        return [boardSize - measurePatternSize(data)[0] - margin, margin]
-      case 'bottom-center':
-        return [boardSize - measurePatternSize(data)[0] - margin, Math.floor((boardSize - measurePatternSize(data)[1]) / 2)]
-      case 'bottom-right':
-        return [boardSize - measurePatternSize(data)[0] - margin, boardSize - measurePatternSize(data)[1] - margin]
-    }
-  }
-  const [offsetX, offsetY] = getOffsets();
-  return data.map(([i, j]) => {
-    return [i + offsetX, j + offsetY]
-  })
-}
 
 export const PATTERNS = {
   'acorn': ACORN,
