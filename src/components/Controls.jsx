@@ -1,9 +1,7 @@
 import { Slider } from '@mantine/core'
-import { ReactComponent as TurnSpeedIcon } from '../assets/speed.svg'
 import { ReactComponent as PlayIcon } from '../assets/play.svg'
 import { ReactComponent as PauseIcon } from '../assets/pause.svg'
 import '../stylesheets/Controls.css'
-
 
 export default function Controls({
     isPlaying,

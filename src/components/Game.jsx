@@ -1,14 +1,7 @@
-import { useState, useEffect } from "react";
-import useInterval from '../hooks/useInterval';
-import usePattern from '../hooks/usePattern';
-import useDrawer from '../hooks/useDrawer'
-import Board from './Board'
-import Controls from './Controls'
-import Drawer from './Drawer'
-import {
-  PATTERNS,
-} from '../patterns/index'
-import '../stylesheets/Game.css'
+import { useState } from "react";
+import { Board, Controls, Drawer } from './index'
+import { useInterval, usePattern, useDrawer } from '../hooks/index'
+import { PATTERNS } from '../patterns/index'
 
 export default function Game() {
   const BOARD_SIZE = 75;
@@ -16,9 +9,8 @@ export default function Game() {
   const INITIAL_PATTERN = PATTERNS['gosper_glider_gun'];
 
   const [state, setState, setNextState, setStateFromCells] = usePattern(INITIAL_PATTERN, BOARD_SIZE)
-  const [turns, setTurns] = useState(0)
   const [turnInterval, setTurnInterval] = useState(INITIAL_INTERVAL);
-
+  const [turns, setTurns] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
   const [drawerIsOpen, setDrawerIsOpen] = useDrawer();
 

@@ -1,7 +1,7 @@
-import Cell from './Cell'
+import { Cell } from './index'
 import '../stylesheets/Board.css'
 
-export default function Board({ state, cell, handleCellClick}) {
+export default function Board({ state, handleCellClick}) {
   return (
     <div className="board">
       {state.map((row, rowIndex) => {
