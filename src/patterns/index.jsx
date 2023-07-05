@@ -130,11 +130,6 @@ const BOOJUM_REFLECTOR = {
   humanName: 'Boojum Reflector'
 }
 
-
-
-
-
-
 export const PATTERNS = {
   'glider': GLIDER,
   'gosper_glider_gun': GOSPER_GLIDER_GUN,
@@ -151,5 +146,4 @@ export const PATTERNS = {
   'spider': SPIDER,
   'bandersnatch': BANDERSNATCH,
   'boojum_reflector': BOOJUM_REFLECTOR,
-
 }

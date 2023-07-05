@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 export default function useDrawer() {
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => { //
+  useEffect(() => {
     const handleMousedown = (e) => {
       if (
         !document.querySelector(".drawer").contains(e.target) &&
@@ -15,9 +15,7 @@ export default function useDrawer() {
       }
     } 
     document.addEventListener("mousedown", handleMousedown)
-    return () => {
-      document.removeEventListener("mousedown", handleMousedown)
-    }
+    return () => document.removeEventListener("mousedown", handleMousedown)
   }, [])
 
   return [isOpen, setIsOpen]
